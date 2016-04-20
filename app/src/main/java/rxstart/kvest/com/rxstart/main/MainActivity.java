@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.test3).setOnClickListener(v->test3());
+        findViewById(R.id.test4).setOnClickListener(v->test4());
     }
 
     private void test1() {
@@ -81,5 +82,13 @@ public class MainActivity extends AppCompatActivity {
     private void test3() {
         Observable.just("Test3")
                 .subscribe(s->Toast.makeText(MainActivity.this, "onNextAction[" + s + "]", Toast.LENGTH_SHORT).show());
+    }
+
+    private void test4() {
+        Observable.just("test 4")
+                .map(s->s + " salt")
+                .map(s->s.hashCode())
+                .map(i->"Hash is " + Integer.toHexString(i))
+                .subscribe(s->Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show());
     }
 }
