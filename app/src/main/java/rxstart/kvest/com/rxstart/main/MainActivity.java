@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 test2();
             }
         });
+        findViewById(R.id.test3).setOnClickListener(v->test3());
     }
 
     private void test1() {
@@ -75,5 +76,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         observable.subscribe(onNextAction);
+    }
+
+    private void test3() {
+        Observable.just("Test3")
+                .subscribe(s->Toast.makeText(MainActivity.this, "onNextAction[" + s + "]", Toast.LENGTH_SHORT).show());
     }
 }
